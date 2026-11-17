@@ -1,0 +1,29 @@
+{
+  "@@locale": "en",
+  "sizeGuideTitle": "Valenki Size Finder",
+  "sizeGuideSubtitle": "Interactive foot length size calculator",
+  "footLengthLabel": "Your foot length:",
+  "cmUnit": "cm",
+  "regularShoeSizeLabel": "Standard shoe size",
+  "recommendedValenkiSizeLabel": "Recommended valenki size",
+  "sizeRecommendationNote": "For foot length {footLength} cm, standard size is {regularSize}. We recommend size {valenkiSize} Kukmor valenki with a comfortable {allowanceMm} mm allowance for warm wool socks.",
+  "@sizeRecommendationNote": {
+    "placeholders": {
+      "footLength": { "type": "String" },
+      "regularSize": { "type": "int" },
+      "valenkiSize": { "type": "int" },
+      "allowanceMm": { "type": "int" }
+    }
+  },
+  "measureInstructionTitle": "How to properly measure your foot:",
+  "measureStep1": "1. Stand on a sheet of paper against a wall.",
+  "measureStep2": "2. Mark the tip of your longest toe.",
+  "measureStep3": "3. Measure the distance with a ruler in centimeters.",
+  "woolComfortTip": "Natural wool adapts to your foot shape over time, so a small allowance is important.",
+  "actionMessage": "{key, select, size_calculation_success{Size calculated successfully} other{Operation completed}}",
+  "@actionMessage": {
+    "placeholders": {
+      "key": { "type": "String" }
+    }
+  }
+}

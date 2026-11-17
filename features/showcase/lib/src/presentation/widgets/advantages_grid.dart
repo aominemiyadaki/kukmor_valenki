@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:showcase/src/presentation/l10n/showcase_localizations.dart';
 
 class AdvantagesGrid extends StatelessWidget {
   const AdvantagesGrid({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = ShowcaseLocalizations.of(context);
     final isMobile = MediaQuery.sizeOf(context).width < 768;
 
     return Container(
@@ -19,9 +21,9 @@ class AdvantagesGrid extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'ПОЧЕМУ КУКМОРСКИЕ ВАЛЕНКИ ВЫБИРАЮТ ПО ВСЕЙ РОССИИ',
-                style: TextStyle(
+              Text(
+                l10n?.heroBadge ?? '',
+                style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 1.2,
@@ -29,9 +31,9 @@ class AdvantagesGrid extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'Секрет тепла и долговечности',
-                style: TextStyle(
+              Text(
+                l10n?.heroTitle ?? '',
+                style: const TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.w700,
                   color: Color(0xFF1E1F22),
@@ -49,26 +51,26 @@ class AdvantagesGrid extends StatelessWidget {
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                     childAspectRatio: crossAxisCount == 1 ? 2.8 : 1.35,
-                    children: const [
+                    children: [
                       _AdvantageCard(
                         icon: Icons.grass_rounded,
-                        title: '100% Овечья шерсть',
-                        text: 'Чистый мытый войлок без синтетических примесей и токсичных клеев. Нога дышит и не потеет.',
+                        title: l10n?.advNaturalTitle ?? '',
+                        text: l10n?.advNaturalDesc ?? '',
                       ),
                       _AdvantageCard(
                         icon: Icons.ac_unit_rounded,
-                        title: 'Морозостойкость до -40°C',
-                        text: 'Воздушные микропоры шерсти удерживают тепло даже в лютый буран и на неподвижной зимней рыбалке.',
+                        title: l10n?.advFrostTitle ?? '',
+                        text: l10n?.advFrostDesc ?? '',
                       ),
                       _AdvantageCard(
                         icon: Icons.waves_rounded,
-                        title: 'Литая ТЭП-подошва',
-                        text: 'Термоэластопласт не дубеет на морозе, не скользит по наледи и надежно защищает войлок от реагентов и соли.',
+                        title: l10n?.advSoleTitle ?? '',
+                        text: l10n?.advSoleDesc ?? '',
                       ),
                       _AdvantageCard(
-                        icon: Icons.favorite_border_rounded,
-                        title: 'Лечебный сухой прогрев',
-                        text: 'Натуральный ланолин в волокнах шерсти снимает суставные боли, усталость и улучшает кровообращение стоп.',
+                        icon: Icons.local_shipping_outlined,
+                        title: l10n?.advDeliveryTitle ?? '',
+                        text: l10n?.advDeliveryDesc ?? '',
                       ),
                     ],
                   );
@@ -98,38 +100,39 @@ class _AdvantageCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFFFBFBF9),
+        color: const Color(0xFFFAF9F6),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFEBE8E1)),
+        border: Border.all(color: const Color(0xFFEDE9DF)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: const Color(0xFFEFECE4),
+              color: const Color(0xFFEBE6D8),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(icon, color: const Color(0xFF2C2D30), size: 20),
+            child: Icon(icon, size: 22, color: const Color(0xFF2C2D30)),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 14),
           Text(
             title,
             style: const TextStyle(
-              fontSize: 15,
+              fontSize: 16,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF222427),
+              color: Color(0xFF1E1F22),
             ),
           ),
           const SizedBox(height: 6),
-          Text(
-            text,
-            style: const TextStyle(
-              fontSize: 13,
-              height: 1.4,
-              color: Color(0xFF6B6E76),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontSize: 13,
+                color: Color(0xFF6B6E76),
+                height: 1.4,
+              ),
             ),
           ),
         ],

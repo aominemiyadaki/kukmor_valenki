@@ -9,15 +9,15 @@ final class OrderActionRepositoryImpl implements OrderActionRepository {
   static const String telegramChannelUrl = 'https://t.me/kukmor_valenki';
 
   @override
-  Future<bool> launchTelegramOrder({required ValenkiProduct product, int? size}) async {
-    final urlStr = product.buildTelegramOrderUrl(username: telegramUsername, selectedSize: size);
+  Future<bool> launchTelegramOrder({required ValenkiProduct product, required String message}) async {
+    final urlStr = product.buildTelegramOrderUrl(username: telegramUsername, message: message);
     final uri = Uri.parse(urlStr);
     return launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
   @override
-  Future<bool> launchWhatsAppOrder({required ValenkiProduct product, int? size}) async {
-    final urlStr = product.buildWhatsAppOrderUrl(phone: whatsAppPhone, selectedSize: size);
+  Future<bool> launchWhatsAppOrder({required ValenkiProduct product, required String message}) async {
+    final urlStr = product.buildWhatsAppOrderUrl(phone: whatsAppPhone, message: message);
     final uri = Uri.parse(urlStr);
     return launchUrl(uri, mode: LaunchMode.externalApplication);
   }

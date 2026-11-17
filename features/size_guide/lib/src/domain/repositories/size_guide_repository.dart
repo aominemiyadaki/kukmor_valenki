@@ -2,13 +2,13 @@ class SizeRecommendation {
   final double footLengthCm;
   final int regularSize;
   final int valenkiSize;
-  final String note;
+  final int allowanceMm;
 
   const SizeRecommendation({
     required this.footLengthCm,
     required this.regularSize,
     required this.valenkiSize,
-    required this.note,
+    this.allowanceMm = 6,
   });
 }
 

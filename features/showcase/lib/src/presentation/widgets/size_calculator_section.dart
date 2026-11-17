@@ -8,10 +8,11 @@ class SizeCalculatorSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final sizeL10n = SizeGuideLocalizations.of(context);
     final isMobile = MediaQuery.sizeOf(context).width < 768;
 
     return Container(
-      color: const Color(0xFFF6F4EE), // Светлый войлочный фон
+      color: const Color(0xFFF6F4EE),
       padding: EdgeInsets.symmetric(
         horizontal: 24,
         vertical: isMobile ? 36 : 56,
@@ -28,9 +29,9 @@ class SizeCalculatorSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(6),
                   border: Border.all(color: const Color(0xFFDDD8CD)),
                 ),
-                child: const Text(
-                  'КАЛЬКУЛЯТОР КУКМОРСКОГО РАЗМЕРА',
-                  style: TextStyle(
+                child: Text(
+                  sizeL10n?.sizeGuideTitle ?? '',
+                  style: const TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 1.1,
@@ -40,7 +41,7 @@ class SizeCalculatorSection extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                'Как не ошибиться с размером валенок?',
+                sizeL10n?.sizeGuideSubtitle ?? '',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w700,
@@ -51,11 +52,10 @@ class SizeCalculatorSection extends StatelessWidget {
               const SizedBox(height: 12),
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 620),
-                child: const Text(
-                  'Натуральный овечий войлок садится точно по ноге за 2–3 дня носки. '
-                  'Укажите точную длину стопы в сантиметрах, и мы рассчитаем идеальный размер с запасом под шерстяной носок.',
+                child: Text(
+                  sizeL10n?.woolComfortTip ?? '',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14, color: Color(0xFF6B6E76), height: 1.45),
+                  style: const TextStyle(fontSize: 14, color: Color(0xFF6B6E76), height: 1.45),
                 ),
               ),
               const SizedBox(height: 32),
@@ -79,9 +79,9 @@ class SizeCalculatorSection extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              'Длина вашей стопы:',
-                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Color(0xFF2C2D30)),
+                            Text(
+                              sizeL10n?.footLengthLabel ?? '',
+                              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: Color(0xFF2C2D30)),
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
@@ -90,7 +90,7 @@ class SizeCalculatorSection extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
-                                '${footLength.toStringAsFixed(1)} см',
+                                '${footLength.toStringAsFixed(1)} ${sizeL10n?.cmUnit ?? "cm"}',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -121,14 +121,14 @@ class SizeCalculatorSection extends StatelessWidget {
                             },
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('22.0 см (р. 35)', style: TextStyle(fontSize: 11, color: Color(0xFF8C8F96))),
-                              Text('26.5 см (р. 41)', style: TextStyle(fontSize: 11, color: Color(0xFF8C8F96))),
-                              Text('30.5 см (р. 47)', style: TextStyle(fontSize: 11, color: Color(0xFF8C8F96))),
+                              Text('22.0 ${sizeL10n?.cmUnit ?? ""}', style: const TextStyle(fontSize: 11, color: Color(0xFF8C8F96))),
+                              Text('26.5 ${sizeL10n?.cmUnit ?? ""}', style: const TextStyle(fontSize: 11, color: Color(0xFF8C8F96))),
+                              Text('30.5 ${sizeL10n?.cmUnit ?? ""}', style: const TextStyle(fontSize: 11, color: Color(0xFF8C8F96))),
                             ],
                           ),
                         ),
@@ -168,7 +168,7 @@ class SizeCalculatorSection extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Рекомендуемый размер валенок: ${recommendation.valenkiSize}',
+                                        '${sizeL10n?.recommendedValenkiSizeLabel ?? ""}: ${recommendation.valenkiSize}',
                                         style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w700,
@@ -177,7 +177,13 @@ class SizeCalculatorSection extends StatelessWidget {
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        recommendation.note,
+                                        sizeL10n?.sizeRecommendationNote(
+                                              footLength.toStringAsFixed(1),
+                                              recommendation.regularSize,
+                                              recommendation.valenkiSize,
+                                              recommendation.allowanceMm,
+                                            ) ??
+                                            '',
                                         style: const TextStyle(
                                           fontSize: 12,
                                           color: Color(0xFF6B6E76),

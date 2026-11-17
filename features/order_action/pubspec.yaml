@@ -1,5 +1,5 @@
 name: order_action
-description: "Feature order_action for Property CRM"
+description: "Feature order_action for Kukmor Valenki"
 version: 0.1.0
 publish_to: 'none'
 resolution: workspace
@@ -10,13 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_bloc: ^9.0.0
   freezed_annotation: ^3.1.0
   get_it: ^8.0.3
   auto_route: ^11.1.0
   url_launcher: ^6.3.1
+  intl: ^0.20.2
   
   # Workspace foundation packages
+  app_utils:
   bloc_extensions:
   domain_shared:
   app_exception:
@@ -32,3 +36,6 @@ dev_dependencies:
   build_runner: ^2.4.15
   mocktail: ^1.0.4
   bloc_test: ^10.0.0
+
+flutter:
+  generate: true

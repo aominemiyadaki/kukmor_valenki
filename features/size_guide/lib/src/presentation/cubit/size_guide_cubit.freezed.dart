@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SizeGuideState {
 
- SizeGuideStatus get status; double get currentFootLength; SizeRecommendation? get recommendation; String? get errorMessage;
+ SizeGuideStatus get status; double get currentFootLength; SizeRecommendation? get recommendation; String? get errorKey;
 /// Create a copy of SizeGuideState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $SizeGuideStateCopyWith<SizeGuideState> get copyWith => _$SizeGuideStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SizeGuideState&&(identical(other.status, status) || other.status == status)&&(identical(other.currentFootLength, currentFootLength) || other.currentFootLength == currentFootLength)&&(identical(other.recommendation, recommendation) || other.recommendation == recommendation)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SizeGuideState&&(identical(other.status, status) || other.status == status)&&(identical(other.currentFootLength, currentFootLength) || other.currentFootLength == currentFootLength)&&(identical(other.recommendation, recommendation) || other.recommendation == recommendation)&&(identical(other.errorKey, errorKey) || other.errorKey == errorKey));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,currentFootLength,recommendation,errorMessage);
+int get hashCode => Object.hash(runtimeType,status,currentFootLength,recommendation,errorKey);
 
 @override
 String toString() {
-  return 'SizeGuideState(status: $status, currentFootLength: $currentFootLength, recommendation: $recommendation, errorMessage: $errorMessage)';
+  return 'SizeGuideState(status: $status, currentFootLength: $currentFootLength, recommendation: $recommendation, errorKey: $errorKey)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $SizeGuideStateCopyWith<$Res>  {
   factory $SizeGuideStateCopyWith(SizeGuideState value, $Res Function(SizeGuideState) _then) = _$SizeGuideStateCopyWithImpl;
 @useResult
 $Res call({
- SizeGuideStatus status, double currentFootLength, SizeRecommendation? recommendation, String? errorMessage
+ SizeGuideStatus status, double currentFootLength, SizeRecommendation? recommendation, String? errorKey
 });
 
 
@@ -62,12 +62,12 @@ class _$SizeGuideStateCopyWithImpl<$Res>
 
 /// Create a copy of SizeGuideState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? currentFootLength = null,Object? recommendation = freezed,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? currentFootLength = null,Object? recommendation = freezed,Object? errorKey = freezed,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as SizeGuideStatus,currentFootLength: null == currentFootLength ? _self.currentFootLength : currentFootLength // ignore: cast_nullable_to_non_nullable
 as double,recommendation: freezed == recommendation ? _self.recommendation : recommendation // ignore: cast_nullable_to_non_nullable
-as SizeRecommendation?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as SizeRecommendation?,errorKey: freezed == errorKey ? _self.errorKey : errorKey // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -153,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SizeGuideStatus status,  double currentFootLength,  SizeRecommendation? recommendation,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SizeGuideStatus status,  double currentFootLength,  SizeRecommendation? recommendation,  String? errorKey)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SizeGuideState() when $default != null:
-return $default(_that.status,_that.currentFootLength,_that.recommendation,_that.errorMessage);case _:
+return $default(_that.status,_that.currentFootLength,_that.recommendation,_that.errorKey);case _:
   return orElse();
 
 }
@@ -174,10 +174,10 @@ return $default(_that.status,_that.currentFootLength,_that.recommendation,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SizeGuideStatus status,  double currentFootLength,  SizeRecommendation? recommendation,  String? errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SizeGuideStatus status,  double currentFootLength,  SizeRecommendation? recommendation,  String? errorKey)  $default,) {final _that = this;
 switch (_that) {
 case _SizeGuideState():
-return $default(_that.status,_that.currentFootLength,_that.recommendation,_that.errorMessage);case _:
+return $default(_that.status,_that.currentFootLength,_that.recommendation,_that.errorKey);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +194,10 @@ return $default(_that.status,_that.currentFootLength,_that.recommendation,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SizeGuideStatus status,  double currentFootLength,  SizeRecommendation? recommendation,  String? errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SizeGuideStatus status,  double currentFootLength,  SizeRecommendation? recommendation,  String? errorKey)?  $default,) {final _that = this;
 switch (_that) {
 case _SizeGuideState() when $default != null:
-return $default(_that.status,_that.currentFootLength,_that.recommendation,_that.errorMessage);case _:
+return $default(_that.status,_that.currentFootLength,_that.recommendation,_that.errorKey);case _:
   return null;
 
 }
@@ -209,13 +209,13 @@ return $default(_that.status,_that.currentFootLength,_that.recommendation,_that.
 
 
 class _SizeGuideState extends SizeGuideState {
-  const _SizeGuideState({this.status = SizeGuideStatus.init, this.currentFootLength = 26.5, this.recommendation, this.errorMessage}): super._();
+  const _SizeGuideState({this.status = SizeGuideStatus.init, this.currentFootLength = 26.5, this.recommendation, this.errorKey}): super._();
   
 
 @override@JsonKey() final  SizeGuideStatus status;
 @override@JsonKey() final  double currentFootLength;
 @override final  SizeRecommendation? recommendation;
-@override final  String? errorMessage;
+@override final  String? errorKey;
 
 /// Create a copy of SizeGuideState
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +227,16 @@ _$SizeGuideStateCopyWith<_SizeGuideState> get copyWith => __$SizeGuideStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SizeGuideState&&(identical(other.status, status) || other.status == status)&&(identical(other.currentFootLength, currentFootLength) || other.currentFootLength == currentFootLength)&&(identical(other.recommendation, recommendation) || other.recommendation == recommendation)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SizeGuideState&&(identical(other.status, status) || other.status == status)&&(identical(other.currentFootLength, currentFootLength) || other.currentFootLength == currentFootLength)&&(identical(other.recommendation, recommendation) || other.recommendation == recommendation)&&(identical(other.errorKey, errorKey) || other.errorKey == errorKey));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,currentFootLength,recommendation,errorMessage);
+int get hashCode => Object.hash(runtimeType,status,currentFootLength,recommendation,errorKey);
 
 @override
 String toString() {
-  return 'SizeGuideState(status: $status, currentFootLength: $currentFootLength, recommendation: $recommendation, errorMessage: $errorMessage)';
+  return 'SizeGuideState(status: $status, currentFootLength: $currentFootLength, recommendation: $recommendation, errorKey: $errorKey)';
 }
 
 
@@ -247,7 +247,7 @@ abstract mixin class _$SizeGuideStateCopyWith<$Res> implements $SizeGuideStateCo
   factory _$SizeGuideStateCopyWith(_SizeGuideState value, $Res Function(_SizeGuideState) _then) = __$SizeGuideStateCopyWithImpl;
 @override @useResult
 $Res call({
- SizeGuideStatus status, double currentFootLength, SizeRecommendation? recommendation, String? errorMessage
+ SizeGuideStatus status, double currentFootLength, SizeRecommendation? recommendation, String? errorKey
 });
 
 
@@ -264,12 +264,12 @@ class __$SizeGuideStateCopyWithImpl<$Res>
 
 /// Create a copy of SizeGuideState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? currentFootLength = null,Object? recommendation = freezed,Object? errorMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? currentFootLength = null,Object? recommendation = freezed,Object? errorKey = freezed,}) {
   return _then(_SizeGuideState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as SizeGuideStatus,currentFootLength: null == currentFootLength ? _self.currentFootLength : currentFootLength // ignore: cast_nullable_to_non_nullable
 as double,recommendation: freezed == recommendation ? _self.recommendation : recommendation // ignore: cast_nullable_to_non_nullable
-as SizeRecommendation?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as SizeRecommendation?,errorKey: freezed == errorKey ? _self.errorKey : errorKey // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

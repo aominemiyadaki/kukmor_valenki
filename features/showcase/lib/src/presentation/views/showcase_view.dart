@@ -1,7 +1,10 @@
+import 'package:bloc_extensions/bloc_extensions.dart';
 import 'package:domain_shared/domain_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:showcase/src/presentation/cubit/showcase_cubit.dart';
+import 'package:showcase/src/presentation/extensions/category_localization_extension.dart';
+import 'package:showcase/src/presentation/l10n/showcase_localizations.dart';
 import 'package:showcase/src/presentation/widgets/advantages_grid.dart';
 import 'package:showcase/src/presentation/widgets/footer_section.dart';
 import 'package:showcase/src/presentation/widgets/header_bar.dart';
@@ -16,9 +19,16 @@ class ShowcaseView extends StatefulWidget {
   State<ShowcaseView> createState() => _ShowcaseViewState();
 }
 
-class _ShowcaseViewState extends State<ShowcaseView> {
+class _ShowcaseViewState extends State<ShowcaseView>
+    with UiEventMixin<ShowcaseView, ShowcaseCubit> {
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _catalogKey = GlobalKey();
+
+  @override
+  String? onResolveUiKey(String uiKey) {
+    final l10n = ShowcaseLocalizations.of(context);
+    return l10n?.actionMessage(uiKey);
+  }
 
   void _scrollToCatalog() {
     final context = _catalogKey.currentContext;
@@ -39,8 +49,10 @@ class _ShowcaseViewState extends State<ShowcaseView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = ShowcaseLocalizations.of(context);
+
     return Scaffold(
-      backgroundColor: const Color(0xFFFAF9F6), // Натуральный тёплый войлок
+      backgroundColor: const Color(0xFFFAF9F6),
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Column(
@@ -65,9 +77,9 @@ class _ShowcaseViewState extends State<ShowcaseView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'КАТАЛОГ ВАЛЕНОК',
-                        style: TextStyle(
+                      Text(
+                        l10n?.catalogEyebrow ?? '',
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w700,
                           letterSpacing: 1.2,
@@ -75,9 +87,9 @@ class _ShowcaseViewState extends State<ShowcaseView> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      const Text(
-                        'Выберите модель для себя и близких',
-                        style: TextStyle(
+                      Text(
+                        l10n?.catalogTitle ?? '',
+                        style: const TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF1E1F22),
@@ -98,7 +110,7 @@ class _ShowcaseViewState extends State<ShowcaseView> {
                                   padding: const EdgeInsets.only(right: 8),
                                   child: FilterChip(
                                     selected: isSelected,
-                                    label: Text(category.title),
+                                    label: Text(category.localizedName(l10n)),
                                     labelStyle: TextStyle(
                                       color: isSelected ? Colors.white : const Color(0xFF333538),
                                       fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
@@ -138,17 +150,17 @@ class _ShowcaseViewState extends State<ShowcaseView> {
                             return Center(
                               child: Padding(
                                 padding: const EdgeInsets.all(32),
-                                child: Text(state.errorMessage ?? 'Ошибка загрузки каталога'),
+                                child: Text(l10n?.catalogLoadError ?? ''),
                               ),
                             );
                           }
 
                           final products = state.products;
                           if (products.isEmpty) {
-                            return const Center(
+                            return Center(
                               child: Padding(
-                                padding: EdgeInsets.all(48),
-                                child: Text('В выбранной категории сейчас нет моделей в наличии'),
+                                padding: const EdgeInsets.all(48),
+                                child: Text(l10n?.emptyCatalogMessage ?? ''),
                               ),
                             );
                           }

@@ -1,3 +1,4 @@
+import 'package:app_utils/app_utils.dart';
 import 'package:domain_shared/src/enums/sole_type.dart';
 import 'package:domain_shared/src/enums/valenki_category.dart';
 
@@ -28,16 +29,18 @@ class ValenkiProduct {
     this.isNaturalWool = true,
   });
 
-  String buildTelegramOrderUrl({required String username, int? selectedSize}) {
-    final sizeText = selectedSize != null ? ', размер: $selectedSize' : '';
-    final message = 'Здравствуйте! Хочу заказать: $title (цена: $price ₽$sizeText). Подскажите наличие и доставку СДЭК?';
+  String buildTelegramOrderUrl({
+    required String username,
+    required String message,
+  }) {
     return 'https://t.me/$username?text=${Uri.encodeComponent(message)}';
   }
 
-  String buildWhatsAppOrderUrl({required String phone, int? selectedSize}) {
-    final sizeText = selectedSize != null ? ', размер: $selectedSize' : '';
-    final message = 'Здравствуйте! Хочу заказать: $title (цена: $price ₽$sizeText). Подскажите наличие и доставку?';
-    final cleanPhone = phone.replaceAll(RegExp(r'[^0-9]'), '');
+  String buildWhatsAppOrderUrl({
+    required String phone,
+    required String message,
+  }) {
+    final cleanPhone = phone.withoutSpace();
     return 'https://wa.me/$cleanPhone?text=${Uri.encodeComponent(message)}';
   }
 }

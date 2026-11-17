@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:order_action/order_action.dart';
+import 'package:showcase/src/presentation/l10n/showcase_localizations.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = ShowcaseLocalizations.of(context);
     final isMobile = MediaQuery.sizeOf(context).width < 768;
 
     return Container(
-      color: const Color(0xFF1E1F22), // Глубокий войлочный цвет
+      color: const Color(0xFF1E1F22),
       padding: EdgeInsets.symmetric(
         horizontal: 24,
         vertical: isMobile ? 36 : 48,
@@ -41,9 +43,9 @@ class FooterSection extends StatelessWidget {
                               child: const Icon(Icons.snowshoeing_rounded, color: Colors.white, size: 18),
                             ),
                             const SizedBox(width: 10),
-                            const Text(
-                              'КУКМОРСКИЕ ВАЛЕНКИ',
-                              style: TextStyle(
+                            Text(
+                              l10n?.brandTitle ?? '',
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 15,
@@ -53,9 +55,9 @@ class FooterSection extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 12),
-                        const Text(
-                          'Настоящие валенки из Республики Татарстан. Традиции экологичного войлочного производства с 1867 года.',
-                          style: TextStyle(color: Color(0xFF9EA1A8), fontSize: 13, height: 1.4),
+                        Text(
+                          l10n?.footerFactoryDesc ?? '',
+                          style: const TextStyle(color: Color(0xFF9EA1A8), fontSize: 13, height: 1.4),
                         ),
                         const SizedBox(height: 16),
                         // 152-ФЗ плашка
@@ -66,14 +68,14 @@ class FooterSection extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(color: const Color(0xFF383A40)),
                           ),
-                          child: const Row(
+                          child: Row(
                             children: [
-                              Icon(Icons.lock_outline_rounded, color: Color(0xFF88D49E), size: 16),
-                              SizedBox(width: 8),
+                              const Icon(Icons.lock_outline_rounded, color: Color(0xFF88D49E), size: 16),
+                              const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  'Приватность без 152-ФЗ: мы не храним персональные данные на сайте. Заказ и консультация оформляются напрямую в мессенджере.',
-                                  style: TextStyle(color: Color(0xFFB5B8BF), fontSize: 11),
+                                  l10n?.privacy152Notice ?? '',
+                                  style: const TextStyle(color: Color(0xFFB5B8BF), fontSize: 11),
                                 ),
                               ),
                             ],
@@ -90,14 +92,14 @@ class FooterSection extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Доставка и оплата',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14),
+                          Text(
+                            l10n?.footerDeliveryTitle ?? '',
+                            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14),
                           ),
                           const SizedBox(height: 12),
-                          const Text(
-                            '• СДЭК до пункта или двери\n• Почта России по всей РФ\n• Примерка перед получением\n• Оплата при получении или перевод',
-                            style: TextStyle(color: Color(0xFF9EA1A8), fontSize: 13, height: 1.6),
+                          Text(
+                            l10n?.footerDeliveryText ?? '',
+                            style: const TextStyle(color: Color(0xFF9EA1A8), fontSize: 13, height: 1.6),
                           ),
                         ],
                       ),
@@ -110,9 +112,9 @@ class FooterSection extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Связь с мастером',
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14),
+                          Text(
+                            l10n?.footerMasterTitle ?? '',
+                            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14),
                           ),
                           const SizedBox(height: 12),
                           TextButton.icon(
@@ -161,9 +163,9 @@ class FooterSection extends StatelessWidget {
               const Divider(color: Color(0xFF2E3035), height: 1),
               const SizedBox(height: 16),
 
-              const Text(
-                '© 2026 Магазин «Кукморские валенки». г. Кукмор, Республика Татарстан. Все права защищены.',
-                style: TextStyle(color: Color(0xFF6B6E76), fontSize: 11),
+              Text(
+                l10n?.footerCopyright ?? '',
+                style: const TextStyle(color: Color(0xFF6B6E76), fontSize: 11),
               ),
             ],
           ),

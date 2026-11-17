@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_initializing_formals
 
+import 'package:app_utils/app_utils.dart';
 import 'package:bloc_extensions/bloc_extensions.dart';
 import 'package:domain_shared/domain_shared.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -39,8 +40,9 @@ class ShowcaseCubit extends BaseCubit<ShowcaseState> {
       onError: (error, st) {
         emit(state.copyWith(
           status: ShowcaseStatus.failure,
-          errorMessage: error.toString(),
+          errorKey: UiLocalizationKeys.catalogLoadFailed,
         ));
+        emitUiEvent(const ErrorUiEvent(uiKey: UiLocalizationKeys.catalogLoadFailed));
       },
     );
   }
@@ -62,8 +64,9 @@ class ShowcaseCubit extends BaseCubit<ShowcaseState> {
       onError: (error, st) {
         emit(state.copyWith(
           status: ShowcaseStatus.failure,
-          errorMessage: error.toString(),
+          errorKey: UiLocalizationKeys.catalogLoadFailed,
         ));
+        emitUiEvent(const ErrorUiEvent(uiKey: UiLocalizationKeys.catalogLoadFailed));
       },
     );
   }

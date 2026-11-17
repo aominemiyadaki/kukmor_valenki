@@ -10,7 +10,7 @@ abstract class ShowcaseState with _$ShowcaseState {
     @Default(ValenkiCategory.all) ValenkiCategory selectedCategory,
     ValenkiProduct? selectedProductForOrder,
     int? selectedSize,
-    String? errorMessage,
+    String? errorKey,
   }) = _ShowcaseState;
 
   const ShowcaseState._();

@@ -1,0 +1,60 @@
+{
+  "@@locale": "en",
+  "brandTitle": "KUKMOR VALENKI",
+  "brandTagline": "100% natural wool • since 1867",
+  "navCatalog": "Catalog",
+  "navSizes": "Sizes",
+  "navContacts": "Contacts",
+  "askQuestionButton": "Ask a question",
+  "heroBadge": "GENUINE KUKMOR FELT",
+  "heroTitle": "Warm handcrafted felt boots for real winter",
+  "heroSubtitle": "100% eco-friendly natural sheep wool. Dry warmth down to -40°C, anti-slip soles and natural comfort.",
+  "heroSelectModelBtn": "Choose Model",
+  "heroSizeGuideBtn": "Find Size",
+  "heroFeatureEco": "100% natural wool",
+  "heroFeatureFrost": "Frost resistant down to -40°C",
+  "heroFeatureDelivery": "Fast shipping with fitting available",
+  "advNaturalTitle": "100% Sheep Wool",
+  "advNaturalDesc": "Washed wool without harsh chemicals. Promotes micro-circulation and relieves foot fatigue.",
+  "advFrostTitle": "Warm to -40°C",
+  "advFrostDesc": "Dense felt creates an optimal microclimate: feet breathe, do not sweat, and stay warm in freezing cold.",
+  "advSoleTitle": "TRP Sole or Pure Felt",
+  "advSoleDesc": "Modern anti-slip TRP sole resists road salts and ice, while classic pure felt is perfect for dry snow and home.",
+  "advDeliveryTitle": "Fast Delivery",
+  "advDeliveryDesc": "Dispatched via courier and postal service with fitting before payment.",
+  "catalogEyebrow": "VALENKI CATALOG",
+  "catalogTitle": "Choose a pair for you and your family",
+  "categoryAll": "All Models",
+  "categoryMen": "Men's",
+  "categoryWomen": "Women's",
+  "categoryKids": "Kids",
+  "categorySlippers": "Slippers & Chuni",
+  "soleTypeTep": "TRP sole (anti-slip, waterproof)",
+  "soleTypeFelt": "Classic pure felt sole",
+  "badgeHit": "BESTSELLER",
+  "badgeWool": "100% WOOL",
+  "availableSizesLabel": "Available sizes:",
+  "selectSizePrompt": "Select size for 1-click ordering:",
+  "orderInTelegram": "Order via Telegram",
+  "orderInWhatsApp": "Order via WhatsApp",
+  "emptyCatalogMessage": "No items currently available in this category",
+  "catalogLoadError": "Failed to load catalog",
+  "priceRub": "{price} RUB",
+  "@priceRub": {
+    "placeholders": {
+      "price": { "type": "int" }
+    }
+  },
+  "footerFactoryDesc": "Authentic felt boots from Tatarstan. Traditions of eco-friendly woolcraft since 1867.",
+  "privacy152Notice": "Privacy-first: no personal data stored on this site. Orders are placed directly via messenger.",
+  "footerDeliveryTitle": "Shipping & Payment",
+  "footerDeliveryText": "• Courier door delivery\n• Fitting before payment\n• Cash or card on delivery",
+  "footerMasterTitle": "Contact Master",
+  "footerCopyright": "© 2026 Kukmor Valenki. Kukmor, Tatarstan. All rights reserved.",
+  "actionMessage": "{key, select, catalog_load_failed{Failed to load catalog} empty_catalog{Catalog is empty} other{Operation completed}}",
+  "@actionMessage": {
+    "placeholders": {
+      "key": { "type": "String" }
+    }
+  }
+}

@@ -2,26 +2,26 @@ import 'package:flutter/widgets.dart';
 
 /// Базовый класс для одиночных UI-команд (диалоги, модалки, тосты, алерты)
 abstract class UiEvent {
-  UiEvent([this.message, this.uiKey]);
+  const UiEvent({this.message, this.uiKey});
 
-  String? message;
+  final String? message;
   final String? uiKey;
 }
 
 /// Команда показа ошибки в UI (снэкбар/алерт)
 class ErrorUiEvent extends UiEvent {
-  ErrorUiEvent([super.message, super.uiKey]);
+  const ErrorUiEvent({super.message, super.uiKey});
 }
 
 /// Команда показа всплывающего уведомления
 class ShowToastEvent extends UiEvent {
-  ShowToastEvent(
-    String message, {
-    String? uiKey,
+  const ShowToastEvent({
+    super.message,
+    super.uiKey,
     this.isError = false,
     this.icon,
     this.duration = const Duration(seconds: 3),
-  }) : super(message, uiKey);
+  });
 
   final bool isError;
   final IconData? icon;
@@ -30,15 +30,15 @@ class ShowToastEvent extends UiEvent {
 
 /// Команда открытия модального окна (BottomSheet)
 class ShowModalEvent extends UiEvent {
-  ShowModalEvent({
+  const ShowModalEvent({
     required this.builder,
     this.isScrollControlled = true,
     this.useRootNavigator = false,
     this.backgroundColor,
     this.barrierDismissible = true,
-    String? message,
-    String? uiKey,
-  }) : super(message, uiKey);
+    super.message,
+    super.uiKey,
+  });
 
   final Widget Function(BuildContext context) builder;
   final bool isScrollControlled;
@@ -49,13 +49,13 @@ class ShowModalEvent extends UiEvent {
 
 /// Команда открытия диалогового окна (AlertDialog / Dialog)
 class ShowDialogEvent extends UiEvent {
-  ShowDialogEvent({
+  const ShowDialogEvent({
     required this.builder,
     this.barrierDismissible = true,
     this.useRootNavigator = true,
-    String? message,
-    String? uiKey,
-  }) : super(message, uiKey);
+    super.message,
+    super.uiKey,
+  });
 
   final Widget Function(BuildContext context) builder;
   final bool barrierDismissible;

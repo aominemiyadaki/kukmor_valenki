@@ -9,7 +9,7 @@ export 'package:usecase_extensions/usecase.dart';
 export 'src/ui_event.dart';
 export 'src/ui_widget_mixin.dart';
 
-/// Базовый класс для классического Bloc (по стандарту booking_app)
+/// Базовый класс для классического Bloc
 abstract class BaseBloc<Event, State> extends Bloc<Event, State>
     with UseCaseProcessor {
   BaseBloc(super.initialState);
@@ -21,9 +21,9 @@ abstract class BaseBloc<Event, State> extends Bloc<Event, State>
   }
 }
 
-/// Базовый класс для Cubit (по стандарту booking_app)
+/// Базовый класс для Cubit
 /// Автоматически предоставляет processUseCase, processSyncUseCase, processStreamUseCase
-/// и стрим одиночных UI-команд uiEvents через openModal(UiEvent).
+/// и стрим одиночных UI-команд uiEvents через emitUiEvent(UiEvent) / openModal(UiEvent).
 abstract class BaseCubit<State> extends Cubit<State> with UseCaseProcessor {
   BaseCubit(super.initialState);
 
@@ -38,6 +38,9 @@ abstract class BaseCubit<State> extends Cubit<State> with UseCaseProcessor {
       _uiEventController.add(event);
     }
   }
+
+  /// Алиас для отправки события пользовательского интерфейса
+  void emitUiEvent(UiEvent event) => openModal(event);
 
   @override
   Future<void> close() {

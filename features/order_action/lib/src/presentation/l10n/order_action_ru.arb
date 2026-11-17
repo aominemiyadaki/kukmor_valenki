@@ -1,0 +1,36 @@
+{
+  "@@locale": "ru",
+  "orderActionTitle": "Быстрый заказ",
+  "orderActionSubtitle": "Заказ через Telegram или WhatsApp",
+  "errorDefault": "Произошла ошибка",
+  "orderTelegramButton": "Заказать в Telegram",
+  "orderWhatsAppButton": "Заказать в WhatsApp",
+  "orderTelegramMessage": "Здравствуйте! Хочу заказать: {productTitle} (цена: {price} ₽{sizeText}). Подскажите наличие и доставку СДЭК?",
+  "@orderTelegramMessage": {
+    "placeholders": {
+      "productTitle": { "type": "String" },
+      "price": { "type": "int" },
+      "sizeText": { "type": "String" }
+    }
+  },
+  "orderWhatsAppMessage": "Здравствуйте! Хочу заказать: {productTitle} (цена: {price} ₽{sizeText}). Подскажите наличие и доставку?",
+  "@orderWhatsAppMessage": {
+    "placeholders": {
+      "productTitle": { "type": "String" },
+      "price": { "type": "int" },
+      "sizeText": { "type": "String" }
+    }
+  },
+  "sizeTextFormat": ", размер: {size}",
+  "@sizeTextFormat": {
+    "placeholders": {
+      "size": { "type": "int" }
+    }
+  },
+  "actionMessage": "{key, select, order_telegram_success{Заказ сформирован, переход в Telegram...} order_telegram_failed{Не удалось открыть Telegram} order_whatsapp_success{Заказ сформирован, переход в WhatsApp...} order_whatsapp_failed{Не удалось открыть WhatsApp} other{Операция выполнена}}",
+  "@actionMessage": {
+    "placeholders": {
+      "key": { "type": "String" }
+    }
+  }
+}

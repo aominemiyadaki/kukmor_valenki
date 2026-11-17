@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ShowcaseState {
 
- ShowcaseStatus get status; List<ValenkiProduct> get products; ValenkiCategory get selectedCategory; ValenkiProduct? get selectedProductForOrder; int? get selectedSize; String? get errorMessage;
+ ShowcaseStatus get status; List<ValenkiProduct> get products; ValenkiCategory get selectedCategory; ValenkiProduct? get selectedProductForOrder; int? get selectedSize; String? get errorKey;
 /// Create a copy of ShowcaseState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ShowcaseStateCopyWith<ShowcaseState> get copyWith => _$ShowcaseStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShowcaseState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.selectedCategory, selectedCategory) || other.selectedCategory == selectedCategory)&&(identical(other.selectedProductForOrder, selectedProductForOrder) || other.selectedProductForOrder == selectedProductForOrder)&&(identical(other.selectedSize, selectedSize) || other.selectedSize == selectedSize)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShowcaseState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.selectedCategory, selectedCategory) || other.selectedCategory == selectedCategory)&&(identical(other.selectedProductForOrder, selectedProductForOrder) || other.selectedProductForOrder == selectedProductForOrder)&&(identical(other.selectedSize, selectedSize) || other.selectedSize == selectedSize)&&(identical(other.errorKey, errorKey) || other.errorKey == errorKey));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(products),selectedCategory,selectedProductForOrder,selectedSize,errorMessage);
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(products),selectedCategory,selectedProductForOrder,selectedSize,errorKey);
 
 @override
 String toString() {
-  return 'ShowcaseState(status: $status, products: $products, selectedCategory: $selectedCategory, selectedProductForOrder: $selectedProductForOrder, selectedSize: $selectedSize, errorMessage: $errorMessage)';
+  return 'ShowcaseState(status: $status, products: $products, selectedCategory: $selectedCategory, selectedProductForOrder: $selectedProductForOrder, selectedSize: $selectedSize, errorKey: $errorKey)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ShowcaseStateCopyWith<$Res>  {
   factory $ShowcaseStateCopyWith(ShowcaseState value, $Res Function(ShowcaseState) _then) = _$ShowcaseStateCopyWithImpl;
 @useResult
 $Res call({
- ShowcaseStatus status, List<ValenkiProduct> products, ValenkiCategory selectedCategory, ValenkiProduct? selectedProductForOrder, int? selectedSize, String? errorMessage
+ ShowcaseStatus status, List<ValenkiProduct> products, ValenkiCategory selectedCategory, ValenkiProduct? selectedProductForOrder, int? selectedSize, String? errorKey
 });
 
 
@@ -62,14 +62,14 @@ class _$ShowcaseStateCopyWithImpl<$Res>
 
 /// Create a copy of ShowcaseState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? products = null,Object? selectedCategory = null,Object? selectedProductForOrder = freezed,Object? selectedSize = freezed,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? products = null,Object? selectedCategory = null,Object? selectedProductForOrder = freezed,Object? selectedSize = freezed,Object? errorKey = freezed,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as ShowcaseStatus,products: null == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
 as List<ValenkiProduct>,selectedCategory: null == selectedCategory ? _self.selectedCategory : selectedCategory // ignore: cast_nullable_to_non_nullable
 as ValenkiCategory,selectedProductForOrder: freezed == selectedProductForOrder ? _self.selectedProductForOrder : selectedProductForOrder // ignore: cast_nullable_to_non_nullable
 as ValenkiProduct?,selectedSize: freezed == selectedSize ? _self.selectedSize : selectedSize // ignore: cast_nullable_to_non_nullable
-as int?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as int?,errorKey: freezed == errorKey ? _self.errorKey : errorKey // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -155,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ShowcaseStatus status,  List<ValenkiProduct> products,  ValenkiCategory selectedCategory,  ValenkiProduct? selectedProductForOrder,  int? selectedSize,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ShowcaseStatus status,  List<ValenkiProduct> products,  ValenkiCategory selectedCategory,  ValenkiProduct? selectedProductForOrder,  int? selectedSize,  String? errorKey)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ShowcaseState() when $default != null:
-return $default(_that.status,_that.products,_that.selectedCategory,_that.selectedProductForOrder,_that.selectedSize,_that.errorMessage);case _:
+return $default(_that.status,_that.products,_that.selectedCategory,_that.selectedProductForOrder,_that.selectedSize,_that.errorKey);case _:
   return orElse();
 
 }
@@ -176,10 +176,10 @@ return $default(_that.status,_that.products,_that.selectedCategory,_that.selecte
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ShowcaseStatus status,  List<ValenkiProduct> products,  ValenkiCategory selectedCategory,  ValenkiProduct? selectedProductForOrder,  int? selectedSize,  String? errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ShowcaseStatus status,  List<ValenkiProduct> products,  ValenkiCategory selectedCategory,  ValenkiProduct? selectedProductForOrder,  int? selectedSize,  String? errorKey)  $default,) {final _that = this;
 switch (_that) {
 case _ShowcaseState():
-return $default(_that.status,_that.products,_that.selectedCategory,_that.selectedProductForOrder,_that.selectedSize,_that.errorMessage);case _:
+return $default(_that.status,_that.products,_that.selectedCategory,_that.selectedProductForOrder,_that.selectedSize,_that.errorKey);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +196,10 @@ return $default(_that.status,_that.products,_that.selectedCategory,_that.selecte
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ShowcaseStatus status,  List<ValenkiProduct> products,  ValenkiCategory selectedCategory,  ValenkiProduct? selectedProductForOrder,  int? selectedSize,  String? errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ShowcaseStatus status,  List<ValenkiProduct> products,  ValenkiCategory selectedCategory,  ValenkiProduct? selectedProductForOrder,  int? selectedSize,  String? errorKey)?  $default,) {final _that = this;
 switch (_that) {
 case _ShowcaseState() when $default != null:
-return $default(_that.status,_that.products,_that.selectedCategory,_that.selectedProductForOrder,_that.selectedSize,_that.errorMessage);case _:
+return $default(_that.status,_that.products,_that.selectedCategory,_that.selectedProductForOrder,_that.selectedSize,_that.errorKey);case _:
   return null;
 
 }
@@ -211,7 +211,7 @@ return $default(_that.status,_that.products,_that.selectedCategory,_that.selecte
 
 
 class _ShowcaseState extends ShowcaseState {
-  const _ShowcaseState({this.status = ShowcaseStatus.init, this.products = const [], this.selectedCategory = ValenkiCategory.all, this.selectedProductForOrder, this.selectedSize, this.errorMessage}): super._();
+  const _ShowcaseState({this.status = ShowcaseStatus.init, this.products = const [], this.selectedCategory = ValenkiCategory.all, this.selectedProductForOrder, this.selectedSize, this.errorKey}): super._();
   
 
 @override@JsonKey() final  ShowcaseStatus status;
@@ -219,7 +219,7 @@ class _ShowcaseState extends ShowcaseState {
 @override@JsonKey() final  ValenkiCategory selectedCategory;
 @override final  ValenkiProduct? selectedProductForOrder;
 @override final  int? selectedSize;
-@override final  String? errorMessage;
+@override final  String? errorKey;
 
 /// Create a copy of ShowcaseState
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +231,16 @@ _$ShowcaseStateCopyWith<_ShowcaseState> get copyWith => __$ShowcaseStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShowcaseState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.selectedCategory, selectedCategory) || other.selectedCategory == selectedCategory)&&(identical(other.selectedProductForOrder, selectedProductForOrder) || other.selectedProductForOrder == selectedProductForOrder)&&(identical(other.selectedSize, selectedSize) || other.selectedSize == selectedSize)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShowcaseState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.selectedCategory, selectedCategory) || other.selectedCategory == selectedCategory)&&(identical(other.selectedProductForOrder, selectedProductForOrder) || other.selectedProductForOrder == selectedProductForOrder)&&(identical(other.selectedSize, selectedSize) || other.selectedSize == selectedSize)&&(identical(other.errorKey, errorKey) || other.errorKey == errorKey));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(products),selectedCategory,selectedProductForOrder,selectedSize,errorMessage);
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(products),selectedCategory,selectedProductForOrder,selectedSize,errorKey);
 
 @override
 String toString() {
-  return 'ShowcaseState(status: $status, products: $products, selectedCategory: $selectedCategory, selectedProductForOrder: $selectedProductForOrder, selectedSize: $selectedSize, errorMessage: $errorMessage)';
+  return 'ShowcaseState(status: $status, products: $products, selectedCategory: $selectedCategory, selectedProductForOrder: $selectedProductForOrder, selectedSize: $selectedSize, errorKey: $errorKey)';
 }
 
 
@@ -251,7 +251,7 @@ abstract mixin class _$ShowcaseStateCopyWith<$Res> implements $ShowcaseStateCopy
   factory _$ShowcaseStateCopyWith(_ShowcaseState value, $Res Function(_ShowcaseState) _then) = __$ShowcaseStateCopyWithImpl;
 @override @useResult
 $Res call({
- ShowcaseStatus status, List<ValenkiProduct> products, ValenkiCategory selectedCategory, ValenkiProduct? selectedProductForOrder, int? selectedSize, String? errorMessage
+ ShowcaseStatus status, List<ValenkiProduct> products, ValenkiCategory selectedCategory, ValenkiProduct? selectedProductForOrder, int? selectedSize, String? errorKey
 });
 
 
@@ -268,14 +268,14 @@ class __$ShowcaseStateCopyWithImpl<$Res>
 
 /// Create a copy of ShowcaseState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? products = null,Object? selectedCategory = null,Object? selectedProductForOrder = freezed,Object? selectedSize = freezed,Object? errorMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? products = null,Object? selectedCategory = null,Object? selectedProductForOrder = freezed,Object? selectedSize = freezed,Object? errorKey = freezed,}) {
   return _then(_ShowcaseState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as ShowcaseStatus,products: null == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
 as List<ValenkiProduct>,selectedCategory: null == selectedCategory ? _self.selectedCategory : selectedCategory // ignore: cast_nullable_to_non_nullable
 as ValenkiCategory,selectedProductForOrder: freezed == selectedProductForOrder ? _self.selectedProductForOrder : selectedProductForOrder // ignore: cast_nullable_to_non_nullable
 as ValenkiProduct?,selectedSize: freezed == selectedSize ? _self.selectedSize : selectedSize // ignore: cast_nullable_to_non_nullable
-as int?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as int?,errorKey: freezed == errorKey ? _self.errorKey : errorKey // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

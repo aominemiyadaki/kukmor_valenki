@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_initializing_formals
 
+import 'package:app_utils/app_utils.dart';
 import 'package:bloc_extensions/bloc_extensions.dart';
 import 'package:domain_shared/domain_shared.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -22,25 +23,53 @@ class OrderActionCubit extends BaseCubit<OrderActionState> {
   // ignore: unused_field
   final OrderActionNavigator? _navigator;
 
-  Future<void> orderViaTelegram({required ValenkiProduct product, int? size}) async {
+  Future<void> orderViaTelegram({
+    required ValenkiProduct product,
+    required String message,
+  }) async {
     emit(state.copyWith(status: OrderActionStatus.launching));
-    final ok = await _repository.launchTelegramOrder(product: product, size: size);
-    emit(state.copyWith(
-      status: ok ? OrderActionStatus.launched : OrderActionStatus.failure,
-      message: ok ? 'Переход в Telegram...' : 'Не удалось открыть Telegram',
-    ));
+    final ok = await _repository.launchTelegramOrder(product: product, message: message);
+    if (ok) {
+      emit(state.copyWith(
+        status: OrderActionStatus.launched,
+        lastActionKey: UiLocalizationKeys.orderTelegramSuccess,
+      ));
+      emitUiEvent(const ShowToastEvent(uiKey: UiLocalizationKeys.orderTelegramSuccess));
+    } else {
+      emit(state.copyWith(
+        status: OrderActionStatus.failure,
+        lastActionKey: UiLocalizationKeys.orderTelegramFailed,
+      ));
+      emitUiEvent(const ErrorUiEvent(uiKey: UiLocalizationKeys.orderTelegramFailed));
+    }
   }
 
-  Future<void> orderViaWhatsApp({required ValenkiProduct product, int? size}) async {
+  Future<void> orderViaWhatsApp({
+    required ValenkiProduct product,
+    required String message,
+  }) async {
     emit(state.copyWith(status: OrderActionStatus.launching));
-    final ok = await _repository.launchWhatsAppOrder(product: product, size: size);
-    emit(state.copyWith(
-      status: ok ? OrderActionStatus.launched : OrderActionStatus.failure,
-      message: ok ? 'Переход в WhatsApp...' : 'Не удалось открыть WhatsApp',
-    ));
+    final ok = await _repository.launchWhatsAppOrder(product: product, message: message);
+    if (ok) {
+      emit(state.copyWith(
+        status: OrderActionStatus.launched,
+        lastActionKey: UiLocalizationKeys.orderWhatsAppSuccess,
+      ));
+      emitUiEvent(const ShowToastEvent(uiKey: UiLocalizationKeys.orderWhatsAppSuccess));
+    } else {
+      emit(state.copyWith(
+        status: OrderActionStatus.failure,
+        lastActionKey: UiLocalizationKeys.orderWhatsAppFailed,
+      ));
+      emitUiEvent(const ErrorUiEvent(uiKey: UiLocalizationKeys.orderWhatsAppFailed));
+    }
   }
 
   Future<void> callPhone() async {
     await _repository.launchPhoneCall();
+  }
+
+  Future<void> openChannel() async {
+    await _repository.launchTelegramChannel();
   }
 }

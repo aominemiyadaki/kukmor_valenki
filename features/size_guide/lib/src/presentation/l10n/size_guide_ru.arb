@@ -1,0 +1,29 @@
+{
+  "@@locale": "ru",
+  "sizeGuideTitle": "Подбор размера валенок",
+  "sizeGuideSubtitle": "Интерактивный калькулятор по длине стопы",
+  "footLengthLabel": "Длина вашей стопы:",
+  "cmUnit": "см",
+  "regularShoeSizeLabel": "Обычный размер обуви",
+  "recommendedValenkiSizeLabel": "Рекомендуемый размер валенок",
+  "sizeRecommendationNote": "Для длины стопы {footLength} см стандартный размер — {regularSize}. Мы рекомендуем {valenkiSize} размер кукморских валенок с комфортным припуском {allowanceMm} мм под шерстяной носок.",
+  "@sizeRecommendationNote": {
+    "placeholders": {
+      "footLength": { "type": "String" },
+      "regularSize": { "type": "int" },
+      "valenkiSize": { "type": "int" },
+      "allowanceMm": { "type": "int" }
+    }
+  },
+  "measureInstructionTitle": "Как правильно измерить стопу:",
+  "measureStep1": "1. Встаньте на лист бумаги у стены.",
+  "measureStep2": "2. Отметьте самую выступающую точку пальцев.",
+  "measureStep3": "3. Измерьте расстояние линейкой в сантиметрах.",
+  "woolComfortTip": "Шерсть со временем мягко принимает форму ноги, поэтому важно иметь небольшой запас.",
+  "actionMessage": "{key, select, size_calculation_success{Размер успешно рассчитан} other{Операция выполнена}}",
+  "@actionMessage": {
+    "placeholders": {
+      "key": { "type": "String" }
+    }
+  }
+}

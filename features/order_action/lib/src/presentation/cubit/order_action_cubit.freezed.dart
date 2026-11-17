@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OrderActionState {
 
- OrderActionStatus get status; String? get message; String? get errorMessage;
+ OrderActionStatus get status; String? get lastActionKey;
 /// Create a copy of OrderActionState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $OrderActionStateCopyWith<OrderActionState> get copyWith => _$OrderActionStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderActionState&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderActionState&&(identical(other.status, status) || other.status == status)&&(identical(other.lastActionKey, lastActionKey) || other.lastActionKey == lastActionKey));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,message,errorMessage);
+int get hashCode => Object.hash(runtimeType,status,lastActionKey);
 
 @override
 String toString() {
-  return 'OrderActionState(status: $status, message: $message, errorMessage: $errorMessage)';
+  return 'OrderActionState(status: $status, lastActionKey: $lastActionKey)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $OrderActionStateCopyWith<$Res>  {
   factory $OrderActionStateCopyWith(OrderActionState value, $Res Function(OrderActionState) _then) = _$OrderActionStateCopyWithImpl;
 @useResult
 $Res call({
- OrderActionStatus status, String? message, String? errorMessage
+ OrderActionStatus status, String? lastActionKey
 });
 
 
@@ -62,11 +62,10 @@ class _$OrderActionStateCopyWithImpl<$Res>
 
 /// Create a copy of OrderActionState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = freezed,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? lastActionKey = freezed,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as OrderActionStatus,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as OrderActionStatus,lastActionKey: freezed == lastActionKey ? _self.lastActionKey : lastActionKey // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
@@ -152,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( OrderActionStatus status,  String? message,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( OrderActionStatus status,  String? lastActionKey)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OrderActionState() when $default != null:
-return $default(_that.status,_that.message,_that.errorMessage);case _:
+return $default(_that.status,_that.lastActionKey);case _:
   return orElse();
 
 }
@@ -173,10 +172,10 @@ return $default(_that.status,_that.message,_that.errorMessage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( OrderActionStatus status,  String? message,  String? errorMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( OrderActionStatus status,  String? lastActionKey)  $default,) {final _that = this;
 switch (_that) {
 case _OrderActionState():
-return $default(_that.status,_that.message,_that.errorMessage);case _:
+return $default(_that.status,_that.lastActionKey);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +192,10 @@ return $default(_that.status,_that.message,_that.errorMessage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( OrderActionStatus status,  String? message,  String? errorMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( OrderActionStatus status,  String? lastActionKey)?  $default,) {final _that = this;
 switch (_that) {
 case _OrderActionState() when $default != null:
-return $default(_that.status,_that.message,_that.errorMessage);case _:
+return $default(_that.status,_that.lastActionKey);case _:
   return null;
 
 }
@@ -208,12 +207,11 @@ return $default(_that.status,_that.message,_that.errorMessage);case _:
 
 
 class _OrderActionState extends OrderActionState {
-  const _OrderActionState({this.status = OrderActionStatus.init, this.message, this.errorMessage}): super._();
+  const _OrderActionState({this.status = OrderActionStatus.init, this.lastActionKey}): super._();
   
 
 @override@JsonKey() final  OrderActionStatus status;
-@override final  String? message;
-@override final  String? errorMessage;
+@override final  String? lastActionKey;
 
 /// Create a copy of OrderActionState
 /// with the given fields replaced by the non-null parameter values.
@@ -225,16 +223,16 @@ _$OrderActionStateCopyWith<_OrderActionState> get copyWith => __$OrderActionStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderActionState&&(identical(other.status, status) || other.status == status)&&(identical(other.message, message) || other.message == message)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderActionState&&(identical(other.status, status) || other.status == status)&&(identical(other.lastActionKey, lastActionKey) || other.lastActionKey == lastActionKey));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,message,errorMessage);
+int get hashCode => Object.hash(runtimeType,status,lastActionKey);
 
 @override
 String toString() {
-  return 'OrderActionState(status: $status, message: $message, errorMessage: $errorMessage)';
+  return 'OrderActionState(status: $status, lastActionKey: $lastActionKey)';
 }
 
 
@@ -245,7 +243,7 @@ abstract mixin class _$OrderActionStateCopyWith<$Res> implements $OrderActionSta
   factory _$OrderActionStateCopyWith(_OrderActionState value, $Res Function(_OrderActionState) _then) = __$OrderActionStateCopyWithImpl;
 @override @useResult
 $Res call({
- OrderActionStatus status, String? message, String? errorMessage
+ OrderActionStatus status, String? lastActionKey
 });
 
 
@@ -262,11 +260,10 @@ class __$OrderActionStateCopyWithImpl<$Res>
 
 /// Create a copy of OrderActionState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = freezed,Object? errorMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? lastActionKey = freezed,}) {
   return _then(_OrderActionState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as OrderActionStatus,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as OrderActionStatus,lastActionKey: freezed == lastActionKey ? _self.lastActionKey : lastActionKey // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

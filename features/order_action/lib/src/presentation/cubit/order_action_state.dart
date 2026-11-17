@@ -6,8 +6,7 @@ enum OrderActionStatus { init, loading, launching, launched, failure }
 abstract class OrderActionState with _$OrderActionState {
   const factory OrderActionState({
     @Default(OrderActionStatus.init) OrderActionStatus status,
-    String? message,
-    String? errorMessage,
+    String? lastActionKey,
   }) = _OrderActionState;
 
   const OrderActionState._();

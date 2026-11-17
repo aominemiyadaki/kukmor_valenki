@@ -1,3 +1,4 @@
+import 'package:app_utils/app_utils.dart';
 import 'package:domain_shared/domain_shared.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -24,7 +25,7 @@ void main() {
     mockNavigator = MockOrderActionNavigator();
     when(() => mockRepository.launchTelegramOrder(
           product: any(named: 'product'),
-          size: any(named: 'size'),
+          message: any(named: 'message'),
         )).thenAnswer((_) async => true);
   });
 
@@ -46,8 +47,8 @@ void main() {
       final cubit = buildCubit();
       const product = ValenkiProduct(
         id: '1',
-        title: 'Тест',
-        subtitle: 'Подзаголовок',
+        title: 'Test',
+        subtitle: 'Sub',
         category: ValenkiCategory.men,
         price: 1000,
         availableSizes: [42],
@@ -56,10 +57,11 @@ void main() {
         description: '',
       );
 
-      final future = cubit.orderViaTelegram(product: product, size: 42);
+      final future = cubit.orderViaTelegram(product: product, message: 'Order message');
       expect(cubit.state.status, OrderActionStatus.launching);
       await future;
       expect(cubit.state.status, OrderActionStatus.launched);
+      expect(cubit.state.lastActionKey, UiLocalizationKeys.orderTelegramSuccess);
       await cubit.close();
     });
   });

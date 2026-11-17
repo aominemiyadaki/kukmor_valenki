@@ -1,0 +1,36 @@
+{
+  "@@locale": "en",
+  "orderActionTitle": "Quick Order",
+  "orderActionSubtitle": "Order via Telegram or WhatsApp",
+  "errorDefault": "An error occurred",
+  "orderTelegramButton": "Order via Telegram",
+  "orderWhatsAppButton": "Order via WhatsApp",
+  "orderTelegramMessage": "Hello! I would like to order: {productTitle} (price: {price} RUB{sizeText}). Is it in stock and can it be shipped?",
+  "@orderTelegramMessage": {
+    "placeholders": {
+      "productTitle": { "type": "String" },
+      "price": { "type": "int" },
+      "sizeText": { "type": "String" }
+    }
+  },
+  "orderWhatsAppMessage": "Hello! I would like to order: {productTitle} (price: {price} RUB{sizeText}). Is it in stock and can it be shipped?",
+  "@orderWhatsAppMessage": {
+    "placeholders": {
+      "productTitle": { "type": "String" },
+      "price": { "type": "int" },
+      "sizeText": { "type": "String" }
+    }
+  },
+  "sizeTextFormat": ", size: {size}",
+  "@sizeTextFormat": {
+    "placeholders": {
+      "size": { "type": "int" }
+    }
+  },
+  "actionMessage": "{key, select, order_telegram_success{Order created, opening Telegram...} order_telegram_failed{Could not open Telegram} order_whatsapp_success{Order created, opening WhatsApp...} order_whatsapp_failed{Could not open WhatsApp} other{Operation completed}}",
+  "@actionMessage": {
+    "placeholders": {
+      "key": { "type": "String" }
+    }
+  }
+}

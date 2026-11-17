@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:showcase/src/presentation/l10n/showcase_localizations.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key, required this.onCatalogTap});
@@ -8,11 +9,12 @@ class HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = ShowcaseLocalizations.of(context);
     final isMobile = MediaQuery.sizeOf(context).width < 768;
 
     return Container(
       width: double.infinity,
-      color: const Color(0xFFF9F8F5), // Тёплый шерстяной фон
+      color: const Color(0xFFF9F8F5),
       padding: EdgeInsets.symmetric(
         horizontal: 24,
         vertical: isMobile ? 32 : 56,
@@ -30,14 +32,14 @@ class HeroSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                   border: Border.all(color: const Color(0xFFDDD8CD)),
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.verified_rounded, size: 14, color: Color(0xFFC25E34)),
-                    SizedBox(width: 6),
+                    const Icon(Icons.verified_rounded, size: 14, color: Color(0xFFC25E34)),
+                    const SizedBox(width: 6),
                     Text(
-                      'Прямые поставки от мастеров Кукмора • Без наценок посредников',
-                      style: TextStyle(
+                      l10n?.heroBadge ?? '',
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                         color: Color(0xFF4A4B4E),
@@ -50,7 +52,7 @@ class HeroSection extends StatelessWidget {
 
               // Главный заголовок
               Text(
-                'Настоящие Кукморские валенки\nдля русской зимы',
+                l10n?.heroTitle ?? '',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w800,
@@ -66,8 +68,7 @@ class HeroSection extends StatelessWidget {
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 680),
                 child: Text(
-                  '100% отборная овечья шерсть без химикатов и синтетики. Сохраняют естественное тепло до -40°C. '
-                  'Модели на нескользящей ТЭП-подошве защищают ноги от слякоти и реагентов.',
+                  l10n?.heroSubtitle ?? '',
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: const Color(0xFF5A5C63),
@@ -83,11 +84,11 @@ class HeroSection extends StatelessWidget {
                 spacing: 12,
                 runSpacing: 8,
                 alignment: WrapAlignment.center,
-                children: const [
-                  _BadgeChip(icon: Icons.thermostat_rounded, label: 'Тепло до -40°C'),
-                  _BadgeChip(icon: Icons.eco_rounded, label: '100% эко-шерсть'),
-                  _BadgeChip(icon: Icons.shield_outlined, label: 'Не промокают на ТЭП'),
-                  _BadgeChip(icon: Icons.local_shipping_outlined, label: 'СДЭК с примеркой'),
+                children: [
+                  _BadgeChip(icon: Icons.thermostat_rounded, label: l10n?.heroFeatureFrost ?? ''),
+                  _BadgeChip(icon: Icons.eco_rounded, label: l10n?.heroFeatureEco ?? ''),
+                  _BadgeChip(icon: Icons.shield_outlined, label: l10n?.soleTypeTep ?? ''),
+                  _BadgeChip(icon: Icons.local_shipping_outlined, label: l10n?.heroFeatureDelivery ?? ''),
                 ],
               ),
               const SizedBox(height: 32),
@@ -103,9 +104,9 @@ class HeroSection extends StatelessWidget {
                 ),
                 onPressed: onCatalogTap,
                 icon: const Icon(Icons.arrow_downward_rounded, size: 18),
-                label: const Text(
-                  'Выбрать валенки в каталоге',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                label: Text(
+                  l10n?.heroSelectModelBtn ?? '',
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -125,23 +126,23 @@ class _BadgeChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFFE8E5DD)),
+        border: Border.all(color: const Color(0xFFE5E2D9)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 14, color: const Color(0xFFC25E34)),
+          Icon(icon, size: 15, color: const Color(0xFFC25E34)),
           const SizedBox(width: 6),
           Text(
             label,
             style: const TextStyle(
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: FontWeight.w500,
-              color: Color(0xFF333538),
+              color: Color(0xFF2C2D30),
             ),
           ),
         ],

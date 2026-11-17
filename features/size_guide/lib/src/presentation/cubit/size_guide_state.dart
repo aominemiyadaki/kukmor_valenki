@@ -8,7 +8,7 @@ abstract class SizeGuideState with _$SizeGuideState {
     @Default(SizeGuideStatus.init) SizeGuideStatus status,
     @Default(26.5) double currentFootLength,
     SizeRecommendation? recommendation,
-    String? errorMessage,
+    String? errorKey,
   }) = _SizeGuideState;
 
   const SizeGuideState._();

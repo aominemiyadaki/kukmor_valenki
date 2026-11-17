@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:order_action/order_action.dart';
+import 'package:showcase/src/presentation/l10n/showcase_localizations.dart';
 
 class HeaderBar extends StatelessWidget {
   const HeaderBar({super.key});
@@ -8,6 +9,7 @@ class HeaderBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = ShowcaseLocalizations.of(context);
     final isMobile = MediaQuery.sizeOf(context).width < 768;
 
     return Container(
@@ -43,16 +45,16 @@ class HeaderBar extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'КУКМОРСКИЕ ВАЛЕНКИ',
+                        l10n?.brandTitle ?? '',
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
                           letterSpacing: 0.5,
                           color: const Color(0xFF1F2023),
                         ),
                       ),
-                      const Text(
-                        'Фабричные традиции с 1867 года • г. Кукмор, Татарстан',
-                        style: TextStyle(
+                      Text(
+                        l10n?.brandTagline ?? '',
+                        style: const TextStyle(
                           fontSize: 11,
                           color: Color(0xFF75787F),
                         ),
@@ -83,7 +85,7 @@ class HeaderBar extends StatelessWidget {
                   if (!isMobile) const SizedBox(width: 12),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF2AABEE), // Telegram brand
+                      backgroundColor: const Color(0xFF2AABEE),
                       foregroundColor: Colors.white,
                       elevation: 0,
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -93,7 +95,7 @@ class HeaderBar extends StatelessWidget {
                       context.read<OrderActionCubit>().callPhone();
                     },
                     icon: const Icon(Icons.send_rounded, size: 14),
-                    label: Text(isMobile ? 'Telegram' : 'Написать менеджеру'),
+                    label: Text(l10n?.askQuestionButton ?? ''),
                   ),
                 ],
               ),

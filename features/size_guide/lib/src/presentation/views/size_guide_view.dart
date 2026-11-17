@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:size_guide/src/presentation/cubit/size_guide_cubit.dart';
+import 'package:size_guide/src/presentation/l10n/size_guide_localizations.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 /// UI-представление фичи SizeGuide
@@ -8,10 +9,12 @@ class SizeGuideView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = SizeGuideLocalizations.of(context);
+
     return Scaffold(
-      headers: const [
+      headers: [
         AppBar(
-          title: Text('Таблица размеров'),
+          title: Text(l10n?.sizeGuideTitle ?? ''),
         ),
       ],
       child: BlocBuilder<SizeGuideCubit, SizeGuideState>(
@@ -22,13 +25,13 @@ class SizeGuideView extends StatelessWidget {
           if (state.isFailure) {
             return Center(
               child: Text(
-                state.errorMessage ?? 'Произошла ошибка',
+                l10n?.actionMessage('error') ?? '',
                 style: const TextStyle(color: Color(0xFFEF4444)),
               ),
             );
           }
-          return const Center(
-            child: Text('Таблица подбора размеров'),
+          return Center(
+            child: Text(l10n?.sizeGuideSubtitle ?? ''),
           );
         },
       ),

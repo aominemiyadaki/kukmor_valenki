@@ -40,14 +40,13 @@ final class SizeGuideRepositoryImpl implements SizeGuideRepository {
       foundRegularSize = entry.key;
     }
 
-    // Правило Кукмора: для валенок рекомендуется брать на 1 размер больше обычной обуви под теплый носок
+    // Рекомендация Кукмора: +1 размер под шерстяной носок
     final valenkiSize = foundRegularSize + 1;
 
     return SizeRecommendation(
       footLengthCm: footLengthCm,
       regularSize: foundRegularSize,
       valenkiSize: valenkiSize,
-      note: 'Для длины стопы $footLengthCm см стандартный размер — $foundRegularSize. Мы рекомендуем $valenkiSize размер кукморских валенок с комфортным припуском 5–8 мм под шерстяной носок.',
     );
   }
 }

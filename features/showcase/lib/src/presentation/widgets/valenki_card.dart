@@ -2,6 +2,8 @@ import 'package:domain_shared/domain_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:order_action/order_action.dart';
+import 'package:showcase/src/presentation/extensions/category_localization_extension.dart';
+import 'package:showcase/src/presentation/l10n/showcase_localizations.dart';
 
 class ValenkiCard extends StatefulWidget {
   const ValenkiCard({super.key, required this.product});
@@ -26,6 +28,8 @@ class _ValenkiCardState extends State<ValenkiCard> {
   @override
   Widget build(BuildContext context) {
     final product = widget.product;
+    final l10n = ShowcaseLocalizations.of(context);
+    final orderL10n = OrderActionLocalizations.of(context);
 
     return Container(
       decoration: BoxDecoration(
@@ -49,14 +53,14 @@ class _ValenkiCardState extends State<ValenkiCard> {
                     return Container(
                       color: const Color(0xFFF0EEE9),
                       alignment: Alignment.center,
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.snowshoeing_rounded, size: 48, color: Color(0xFFBDBAB2)),
-                          SizedBox(height: 8),
+                          const Icon(Icons.snowshoeing_rounded, size: 48, color: Color(0xFFBDBAB2)),
+                          const SizedBox(height: 8),
                           Text(
-                            'Кукморский войлок',
-                            style: TextStyle(color: Color(0xFF8C8A84), fontSize: 13),
+                            l10n?.brandTitle ?? '',
+                            style: const TextStyle(color: Color(0xFF8C8A84), fontSize: 13),
                           ),
                         ],
                       ),
@@ -78,9 +82,9 @@ class _ValenkiCardState extends State<ValenkiCard> {
                           color: const Color(0xFFC25E34),
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        child: const Text(
-                          'ХИТ',
-                          style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w700),
+                        child: Text(
+                          l10n?.badgeHit ?? '',
+                          style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w700),
                         ),
                       ),
                     if (product.isHit) const SizedBox(width: 6),
@@ -90,9 +94,9 @@ class _ValenkiCardState extends State<ValenkiCard> {
                         color: const Color(0xFF2C2D30).withValues(alpha: 0.85),
                         borderRadius: BorderRadius.circular(6),
                       ),
-                      child: const Text(
-                        '100% ШЕРСТЬ',
-                        style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w600),
+                      child: Text(
+                        l10n?.badgeWool ?? '',
+                        style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],
@@ -120,9 +124,9 @@ class _ValenkiCardState extends State<ValenkiCard> {
                 ),
                 const SizedBox(height: 4),
 
-                // Описание подошвы
+                // Описание подошвы через локализованный extension
                 Text(
-                  product.soleType.label,
+                  product.soleType.localizedName(l10n),
                   style: const TextStyle(
                     fontSize: 12,
                     color: Color(0xFF6B6E76),
@@ -131,9 +135,9 @@ class _ValenkiCardState extends State<ValenkiCard> {
                 const SizedBox(height: 12),
 
                 // Выбор размера
-                const Text(
-                  'Размеры в наличии:',
-                  style: TextStyle(
+                Text(
+                  l10n?.availableSizesLabel ?? '',
+                  style: const TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF8A8D94),
@@ -175,7 +179,7 @@ class _ValenkiCardState extends State<ValenkiCard> {
                 ),
                 const SizedBox(height: 16),
 
-                // Цена и кнопка заказа
+                // Цена и кнопки заказа
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -183,7 +187,7 @@ class _ValenkiCardState extends State<ValenkiCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${product.price} ₽',
+                          l10n?.priceRub(product.price) ?? '${product.price} ₽',
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
@@ -192,32 +196,60 @@ class _ValenkiCardState extends State<ValenkiCard> {
                         ),
                         if (_selectedSize != null)
                           Text(
-                            'Размер: $_selectedSize',
+                            orderL10n?.sizeTextFormat(_selectedSize!) ?? '',
                             style: const TextStyle(fontSize: 11, color: Color(0xFF8C8F96)),
                           ),
                       ],
                     ),
 
-                    // Кнопка быстрого заказа в Telegram
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF2AABEE),
-                        foregroundColor: Colors.white,
-                        elevation: 0,
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                      ),
-                      onPressed: () {
-                        context.read<OrderActionCubit>().orderViaTelegram(
-                              product: product,
-                              size: _selectedSize,
-                            );
-                      },
-                      icon: const Icon(Icons.send_rounded, size: 13),
-                      label: const Text(
-                        'Заказать',
-                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                      ),
+                    // Кнопки быстрого заказа без 152-ФЗ
+                    Row(
+                      children: [
+                        IconButton(
+                          tooltip: orderL10n?.orderWhatsAppButton ?? '',
+                          style: IconButton.styleFrom(
+                            backgroundColor: const Color(0xFF25D366),
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          ),
+                          onPressed: () {
+                            final sizeTxt = _selectedSize != null
+                                ? (orderL10n?.sizeTextFormat(_selectedSize!) ?? ', размер: $_selectedSize')
+                                : '';
+                            final msg = orderL10n?.orderWhatsAppMessage(product.title, product.price, sizeTxt) ?? '';
+                            context.read<OrderActionCubit>().orderViaWhatsApp(
+                                  product: product,
+                                  message: msg,
+                                );
+                          },
+                          icon: const Icon(Icons.chat_bubble_outline_rounded, size: 16),
+                        ),
+                        const SizedBox(width: 8),
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF2AABEE),
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          ),
+                          onPressed: () {
+                            final sizeTxt = _selectedSize != null
+                                ? (orderL10n?.sizeTextFormat(_selectedSize!) ?? ', размер: $_selectedSize')
+                                : '';
+                            final msg = orderL10n?.orderTelegramMessage(product.title, product.price, sizeTxt) ?? '';
+                            context.read<OrderActionCubit>().orderViaTelegram(
+                                  product: product,
+                                  message: msg,
+                                );
+                          },
+                          icon: const Icon(Icons.send_rounded, size: 13),
+                          label: Text(
+                            orderL10n?.orderTelegramButton ?? '',
+                            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

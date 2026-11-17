@@ -65,12 +65,11 @@ void main() {
   group('UiLocalizationKeys', () {
     test('constants are defined and accessible', () {
       expect(UiLocalizationKeys.back, 'back');
-      expect(UiLocalizationKeys.videoSavedSuccess, 'video_saved_success');
-      expect(UiLocalizationKeys.videoDownloadFailed, 'video_download_failed');
-      expect(UiLocalizationKeys.networkConnected, 'network_connected');
-      expect(UiLocalizationKeys.networkDisconnected, 'network_disconnected');
-      expect(UiLocalizationKeys.networkRestored, 'network_restored');
-      expect(UiLocalizationKeys.pageLoadFailed, 'page_load_failed');
+      expect(UiLocalizationKeys.orderTelegramSuccess, 'order_telegram_success');
+      expect(UiLocalizationKeys.orderTelegramFailed, 'order_telegram_failed');
+      expect(UiLocalizationKeys.orderWhatsAppSuccess, 'order_whatsapp_success');
+      expect(UiLocalizationKeys.orderWhatsAppFailed, 'order_whatsapp_failed');
+      expect(UiLocalizationKeys.catalogLoadFailed, 'catalog_load_failed');
     });
   });
 }

@@ -20,7 +20,6 @@ void main() {
         footLengthCm: 26.5,
         regularSize: 41,
         valenkiSize: 42,
-        note: 'Рекомендуем 42 размер',
       ),
     );
   });
