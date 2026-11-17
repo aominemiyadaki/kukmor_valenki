@@ -5,15 +5,15 @@ import 'package:ui_kit/src/theme/theme_cubit.dart';
 /// Кнопка переключения темы оформления со сменой иконок и лейбла
 class ThemeToggleButton extends StatelessWidget {
   const ThemeToggleButton({
-    this.lightLabel = 'Светлая',
-    this.darkLabel = 'Тёмная',
+    this.lightLabel,
+    this.darkLabel,
     this.tooltip,
-    this.showLabel = true,
+    this.showLabel = false,
     super.key,
   });
 
-  final String lightLabel;
-  final String darkLabel;
+  final String? lightLabel;
+  final String? darkLabel;
   final String? tooltip;
   final bool showLabel;
 
@@ -22,7 +22,7 @@ class ThemeToggleButton extends StatelessWidget {
     return BlocBuilder<ThemeCubit, ThemeMode>(
       builder: (context, themeMode) {
         final isDark = context.read<ThemeCubit>().isDark(context);
-        final label = isDark ? lightLabel : darkLabel;
+        final label = isDark ? (lightLabel ?? '') : (darkLabel ?? '');
         final icon = isDark ? LucideIcons.sun : LucideIcons.moon;
 
         return OutlineButton(
@@ -31,7 +31,7 @@ class ThemeToggleButton extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(icon, size: 16),
-              if (showLabel) ...[const SizedBox(width: 6), Text(label)],
+              if (showLabel && label.isNotEmpty) ...[const SizedBox(width: 6), Text(label)],
             ],
           ),
         );

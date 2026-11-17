@@ -75,7 +75,7 @@ mixin UseCaseProcessor<State> on BlocBase<State> {
   /// Дефолтный обработчик ошибок с выводом через AppLogger
   void handleDefaultError(Object error, StackTrace stackTrace) {
     AppLogger.error(
-      '[UseCaseProcessor] Необработанная ошибка',
+      '[UseCaseProcessor] Unhandled error',
       error,
       stackTrace,
     );

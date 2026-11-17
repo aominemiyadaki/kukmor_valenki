@@ -214,7 +214,7 @@ class _ValenkiCardState extends State<ValenkiCard> {
                           ),
                           onPressed: () {
                             final sizeTxt = _selectedSize != null
-                                ? (orderL10n?.sizeTextFormat(_selectedSize!) ?? ', размер: $_selectedSize')
+                                ? (orderL10n?.sizeTextFormat(_selectedSize!) ?? '')
                                 : '';
                             final msg = orderL10n?.orderWhatsAppMessage(product.title, product.price, sizeTxt) ?? '';
                             context.read<OrderActionCubit>().orderViaWhatsApp(
@@ -235,7 +235,7 @@ class _ValenkiCardState extends State<ValenkiCard> {
                           ),
                           onPressed: () {
                             final sizeTxt = _selectedSize != null
-                                ? (orderL10n?.sizeTextFormat(_selectedSize!) ?? ', размер: $_selectedSize')
+                                ? (orderL10n?.sizeTextFormat(_selectedSize!) ?? '')
                                 : '';
                             final msg = orderL10n?.orderTelegramMessage(product.title, product.price, sizeTxt) ?? '';
                             context.read<OrderActionCubit>().orderViaTelegram(
