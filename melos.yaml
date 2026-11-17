@@ -1,0 +1,40 @@
+name: kukmor_valenki
+packages:
+  - .
+  - packages/*
+  - features/*
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+scripts:
+  build:
+    exec: dart run build_runner build --delete-conflicting-outputs
+    description: "Генерация кода (Freezed, AutoRoute) во всех пакетах"
+    packageFilters:
+      dependsOn: build_runner
+    concurrency: 4
+
+  watch:
+    exec: dart run build_runner watch --delete-conflicting-outputs
+    description: "Запуск build_runner в режиме watch"
+    packageFilters:
+      dependsOn: build_runner
+
+  test:
+    exec: flutter test
+    description: "Запуск Unit-тестов во всех пакетах"
+    packageFilters:
+      dirExists: test
+    concurrency: 4
+
+  analyze:
+    exec: flutter analyze .
+    description: "Статический анализ проекта"
+    concurrency: 4
+
+  clean:
+    exec: flutter clean
+    description: "Очистка кэша сборки"
+    concurrency: 4

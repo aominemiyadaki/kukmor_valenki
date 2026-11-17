@@ -1,0 +1,7 @@
+**/*.freezed.dart
+**/*.g.dart
+**/*.gr.dart
+**/*.mocks.dart
+pubspec.lock
+**/build/
+**/.dart_tool/

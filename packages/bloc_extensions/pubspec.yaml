@@ -1,0 +1,20 @@
+name: bloc_extensions
+description: "BaseCubit, BaseBloc, UiEvent, and UiWidgetMixin"
+version: 0.1.0
+publish_to: 'none'
+resolution: workspace
+
+environment:
+  sdk: '>=3.13.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.0.0
+  usecase_extensions:
+  app_logger:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

@@ -1,0 +1,85 @@
+name: kukmor_valenki
+description: "Интернет-магазин настоящих Кукморских валенок"
+publish_to: 'none'
+version: 0.1.0+1
+
+workspace:
+  - packages/*
+  - features/*
+
+environment:
+  sdk: '>=3.13.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management & DI
+  flutter_bloc: ^9.0.0
+  get_it: ^8.0.3
+
+  # Routing
+  auto_route: ^11.1.0
+  url_launcher: ^6.3.1
+
+  # Workspace features
+  showcase:
+  size_guide:
+  order_action:
+
+  # Workspace foundation packages
+  app_logger:
+  app_exception:
+  app_utils:
+  bloc_extensions:
+  domain_shared:
+  ui_kit:
+
+  # Code Generation Annotations
+  freezed_annotation: ^3.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  auto_route_generator: ^10.5.0
+  build_runner: ^2.4.15
+  freezed: ^3.1.0
+  melos: ^7.8.0
+
+flutter:
+  uses-material-design: true
+
+melos:
+  scripts:
+    build:
+      exec: dart run build_runner build --delete-conflicting-outputs
+      description: "Генерация кода (Freezed, AutoRoute) во всех пакетах"
+      packageFilters:
+        dependsOn: build_runner
+      concurrency: 4
+
+    watch:
+      exec: dart run build_runner watch --delete-conflicting-outputs
+      description: "Запуск build_runner в режиме watch"
+      packageFilters:
+        dependsOn: build_runner
+
+    test:
+      exec: flutter test
+      description: "Запуск Unit-тестов во всех пакетах"
+      packageFilters:
+        dirExists: test
+      concurrency: 4
+
+    analyze:
+      exec: flutter analyze .
+      description: "Статический анализ проекта"
+      concurrency: 4
+
+    clean:
+      exec: flutter clean
+      description: "Очистка кэша сборки"
+      concurrency: 4
